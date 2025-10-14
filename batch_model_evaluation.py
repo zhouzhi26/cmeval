@@ -15,11 +15,12 @@ import argparse
 
 class BatchModelEvaluator:
     def __init__(self):
+        # Configure your model paths here
         self.models = [
-            "/root/autodl-tmp/models/Qwen/Qwen3-0___6B",
-            "/root/autodl-tmp/models/Qwen/Qwen3-1___7B",
-            "/root/autodl-tmp/models/Qwen/Qwen3-4B",
-            "/root/autodl-tmp/models/Qwen/Qwen3-8B"
+            "models/Qwen/Qwen3-0.6B",
+            "models/Qwen/Qwen3-1.7B",
+            "models/Qwen/Qwen3-4B",
+            "models/Qwen/Qwen3-8B"
         ]
         
         self.results_summary = []
@@ -318,7 +319,7 @@ def main():
     """Main function"""
     parser = argparse.ArgumentParser(description="Batch Model Evaluation Tool")
     parser.add_argument("--dataset", 
-                       default="/root/autodl-tmp/output.json",
+                       default="datasets/output.json",
                        help="Evaluation dataset path")
     parser.add_argument("--output-dir", 
                        default="results",

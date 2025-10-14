@@ -25,11 +25,11 @@ import argparse
 # -----------------------------
 # Config
 # -----------------------------
-MODEL_PATH = "/root/autodl-tmp/models/Qwen/Qwen3-1___7B"
-DATASET_PATH = "/root/autodl-tmp/tagged_synthesis_smile.json"
+MODEL_PATH = "models/Qwen/Qwen3-1.7B"
+DATASET_PATH = "datasets/tagged_synthesis_smile.json"
 # Use qwen2.5_7b.json only as format reference; write to new eval files
-OUTPUT_FILE_SMILE = "/root/autodl-tmp/hecheng/smile/qwen3-1_7b_eval.json"
-OUTPUT_FILE_COMMON = "/root/autodl-tmp/hecheng/common/qwen3-1_7b_eval.json"
+OUTPUT_FILE_SMILE = "results/synthesis/smile/qwen3-1_7b_eval.json"
+OUTPUT_FILE_COMMON = "results/synthesis/common/qwen3-1_7b_eval.json"
 
 BATCH_SIZE = 2
 MAX_MODEL_LEN = 30000

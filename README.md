@@ -21,9 +21,11 @@ cmeval/
 ├── model_evaluation.py               # General model evaluation framework
 ├── qwen3.py                          # Qwen3 small model-specific evaluation script
 ├── evaluate_synthesis_qwen.py        # Chemical synthesis evaluation (supports SMILES format)
-├── datasets/                         # Dataset directory
-├── models/                           # Model directory
-└── results/                          # Evaluation results output directory
+├── datasets/                         # Dataset directory (place your datasets here)
+├── models/                           # Model directory (place your downloaded models here)
+├── results/                          # Evaluation results output directory
+├── requirements.txt                  # Python dependencies
+└── README.md                         # This file
 ```
 
 ## Installation
@@ -41,6 +43,31 @@ cmeval/
 pip install -r requirements.txt
 ```
 
+### Directory Setup
+
+Before running evaluations, organize your files as follows:
+
+```bash
+cmeval/
+├── models/                    # Place your downloaded models here
+│   ├── Qwen/
+│   │   ├── Qwen3-0.6B/
+│   │   ├── Qwen3-1.7B/
+│   │   └── Qwen3-8B/
+│   └── Meta-Llama-3.1-8B-Instruct/
+├── datasets/                  # Place your datasets here
+│   ├── output.json
+│   ├── generated_questions.json
+│   └── tagged_synthesis_smile.json
+└── results/                   # Evaluation results will be saved here
+    └── (auto-generated)
+```
+
+You can download models from:
+- **Qwen models**: [ModelScope](https://modelscope.cn/models/qwen) or [HuggingFace](https://huggingface.co/Qwen)
+- **Llama models**: [HuggingFace](https://huggingface.co/meta-llama)
+- **Other models**: Check respective model repositories
+
 ## Quick Start
 
 ### 1. Single Model Evaluation
@@ -49,9 +76,17 @@ Use the basic version for chemical knowledge testing:
 
 ```bash
 python chemical_knowledge_test.py \
-    --model-path /path/to/your/model \
-    --dataset-path /path/to/dataset.json \
+    --model-path models/your-model-name \
+    --dataset-path datasets/your-dataset.json \
     --output results/output.json
+```
+
+Example with specific model:
+```bash
+python chemical_knowledge_test.py \
+    --model-path models/Qwen/Qwen3-1.7B \
+    --dataset-path datasets/output.json \
+    --output results/qwen3_results.json
 ```
 
 ### 2. vLLM Accelerated Evaluation
@@ -60,10 +95,19 @@ Use vLLM for high-performance batch inference (recommended for small models):
 
 ```bash
 python chemical_knowledge_test_vllm.py \
-    --input /path/to/dataset.json \
+    --input datasets/generated_questions.json \
     --output results/output.jsonl \
-    --model-path /path/to/your/model \
+    --model-path models/your-model-name \
     --batch-size 16
+```
+
+Example with Llama model:
+```bash
+python chemical_knowledge_test_vllm.py \
+    --input datasets/generated_questions.json \
+    --output results/llama_results.jsonl \
+    --model-path models/Meta-Llama-3.1-8B-Instruct \
+    --batch-size 8
 ```
 
 ### 3. Batch Model Evaluation
@@ -72,12 +116,22 @@ Automatically evaluate multiple small models:
 
 ```bash
 python batch_model_evaluation.py \
-    --dataset /path/to/dataset.json \
+    --dataset datasets/output.json \
     --output-dir results/ \
     --no-skip
 ```
 
-Note: You need to configure the list of model paths in `batch_model_evaluation.py`.
+**Important**: Before running batch evaluation, configure your model paths in `batch_model_evaluation.py`:
+
+```python
+# Edit the __init__ method in BatchModelEvaluator class
+self.models = [
+    "models/Qwen/Qwen3-0.6B",
+    "models/Qwen/Qwen3-1.7B",
+    "models/Qwen/Qwen3-4B",
+    # Add your own models here
+]
+```
 
 ### 4. Qwen3 Small Model Evaluation
 
@@ -101,6 +155,8 @@ Available modes:
 - `both`: Evaluate both SMILES and common chemical questions
 - `smile`: Evaluate only SMILES questions
 - `common`: Evaluate only common chemical questions
+
+**Note**: Make sure to place your `tagged_synthesis_smile.json` dataset in the `datasets/` directory, or modify the `DATASET_PATH` in the script.
 
 ## Dataset Format
 
@@ -177,12 +233,14 @@ Modify the model list in `batch_model_evaluation.py`:
 
 ```python
 self.models = [
-    "/root/autodl-tmp/models/Qwen/Qwen3-0___6B",
-    "/root/autodl-tmp/models/Qwen/Qwen3-1___7B",
-    "/root/autodl-tmp/models/Qwen/Qwen3-4B",
-    "/root/autodl-tmp/models/Qwen/Qwen3-8B"
+    "models/Qwen/Qwen3-0.6B",
+    "models/Qwen/Qwen3-1.7B",
+    "models/Qwen/Qwen3-4B",
+    "models/Qwen/Qwen3-8B"
 ]
 ```
+
+Note: Place your downloaded models in the `models/` directory, or use absolute paths if needed.
 
 ### vLLM Configuration Parameters
 

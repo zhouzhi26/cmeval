@@ -19,7 +19,7 @@ from typing import List, Dict, Any
 
 
 class ChemicalKnowledgeTesterVLLM:
-    def __init__(self, model_path="/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct"):
+    def __init__(self, model_path="models/Meta-Llama-3.1-8B-Instruct"):
         self.model_path = model_path
         self.llm = None
         self.results = []
@@ -440,11 +440,11 @@ def main():
     """Main function"""
     import argparse
     
-    parser = argparse.ArgumentParser(description="Meta-Llama-3___1-8B-Instruct Chemical Knowledge Test with vLLM")
-    parser.add_argument("--input", default="/root/autodl-tmp/datasets/generated_questions.json", help="Input JSON file")
+    parser = argparse.ArgumentParser(description="Chemical Knowledge Test with vLLM")
+    parser.add_argument("--input", default="datasets/generated_questions.json", help="Input JSON file")
     parser.add_argument("--output", help="Output JSONL file (auto-generated if not specified)")
     parser.add_argument("--incorrect-answers-file", help="Output file for incorrect answers (auto-generated if not specified)")
-    parser.add_argument("--model-path", default="/root/autodl-tmp/models/llama/Meta-Llama-3___1-8B-Instruct", help="Model path")
+    parser.add_argument("--model-path", default="models/Meta-Llama-3.1-8B-Instruct", help="Model path")
     parser.add_argument("--max-questions", type=int, help="Maximum number of questions for testing")
     parser.add_argument("--batch-size", type=int, default=8, help="vLLM batch size")
     

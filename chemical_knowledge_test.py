@@ -9,8 +9,8 @@ from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 from transformers import AutoTokenizer
 
 # Configuration parameters
-MODEL_PATH = "/root/autodl-tmp/models/llama/Meta-Llama-3___1-8B-Instruct"
-JSON_PATH = "/root/autodl-tmp/output.json"
+MODEL_PATH = "models/Meta-Llama-3.1-8B-Instruct"
+JSON_PATH = "datasets/output.json"
 BATCH_SIZE = 16  # Adjust based on GPU memory
 
 # Extract model name from model path

@@ -21,9 +21,9 @@ from vllm import LLM, SamplingParams
 # -----------------------------
 # Configuration
 # -----------------------------
-MODEL_NAME = "/root/autodl-tmp/models/Qwen/Qwen3-8B"  # Qwen3-8B downloaded from ModelScope or HuggingFace
-INPUT_FILE = "output.json"            # Input question file
-OUTPUT_FILE = "qwen3_8b.json"           # Save result file
+MODEL_NAME = "models/Qwen/Qwen3-8B"  # Qwen3-8B downloaded from ModelScope or HuggingFace
+INPUT_FILE = "datasets/output.json"            # Input question file
+OUTPUT_FILE = "results/qwen3_8b.json"           # Save result file
 BATCH_SIZE = 2           # Batch size
 
 # -----------------------------
