@@ -1,0 +1,56 @@
+# CMEval - Chemical Knowledge Model Evaluation Tool Dependencies
+
+# Core deep learning frameworks
+torch>=2.0.0
+transformers>=4.35.0
+
+# vLLM high-performance inference engine
+vllm>=0.5.0
+
+# Evaluation metrics calculation
+scikit-learn>=1.3.0
+numpy>=1.24.0
+
+# OpenAI API support (optional)
+openai>=1.0.0
+
+# HTTP request support
+requests>=2.31.0
+
+# Data processing
+pandas>=2.0.0
+
+# Progress bar display
+tqdm>=4.66.0
+
+# System utilities
+psutil>=5.9.0
+
+# Configuration file parsing
+pyyaml>=6.0.0
+
+# Logging utilities
+loguru>=0.7.0
+
+# Type checking
+typing-extensions>=4.8.0
+
+# Async support
+aiohttp>=3.9.0
+
+# GPU acceleration related
+# Note: Choose the appropriate version based on your CUDA version
+# cuda-python>=12.0.0  # If CUDA Python bindings are needed
+
+# Optional: For advanced visualization
+# matplotlib>=3.7.0
+# seaborn>=0.13.0
+
+# Optional: For result analysis
+# jupyter>=1.0.0
+# ipython>=8.0.0
+
+# Development tools (optional)
+# pytest>=7.4.0
+# black>=23.0.0
+# flake8>=6.0.0
